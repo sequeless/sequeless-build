@@ -1,0 +1,66 @@
+name: Release (reusable)
+
+on:
+  workflow_call:
+    inputs:
+      java-version:
+        type: string
+        default: '25'
+    secrets:
+      RELEASE_PLEASE_TOKEN:
+        required: false
+
+permissions:
+  contents: write
+  pull-requests: write
+  packages: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Release PR or release
+        id: release
+        uses: googleapis/release-please-action@5c625bfb5d1ff62eadeeb3772007f7f66fdcf071 # v4
+        with:
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN || secrets.GITHUB_TOKEN }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        if: steps.release.outputs.releases_created == 'true'
+      - uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6
+        if: steps.release.outputs.releases_created == 'true'
+        with:
+          distribution: temurin
+          java-version: ${{ inputs.java-version }}
+          cache: maven
+          server-id: github
+          server-username: MAVEN_USERNAME
+          server-password: MAVEN_PASSWORD
+
+      # Deploy only the modules released in this run. The .github package is a version file, not a Maven module.
+      - name: Work out released modules
+        if: steps.release.outputs.releases_created == 'true'
+        id: modules
+        env:
+          PATHS: ${{ steps.release.outputs.paths_released }}
+        run: |
+          MODULES=$(echo "$PATHS" | jq -r '[.[] | select(. != ".github")] | join(",")')
+          echo "modules=$MODULES" >> "$GITHUB_OUTPUT"
+
+      # Two steps, not one `-am deploy`: -am would also deploy upstream modules that are SNAPSHOTs or
+      # already published (spec 1 §7, correcting #17 §4). Install builds upstreams locally; deploy is targeted.
+      - name: Build released modules and their upstreams
+        if: steps.release.outputs.releases_created == 'true' && steps.modules.outputs.modules != ''
+        env:
+          MAVEN_USERNAME: ${{ github.actor }}
+          MAVEN_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+        run: mvn -B -ntp -Prelease -pl "${{ steps.modules.outputs.modules }}" -am install -DskipTests
+
+      - name: Deploy released modules
+        if: steps.release.outputs.releases_created == 'true' && steps.modules.outputs.modules != ''
+        env:
+          MAVEN_USERNAME: ${{ github.actor }}
+          MAVEN_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+        run: mvn -B -ntp -Prelease -pl "${{ steps.modules.outputs.modules }}" deploy -DskipTests

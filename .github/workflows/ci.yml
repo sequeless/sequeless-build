@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    uses: ./.github/workflows/maven-ci.yml
+    with:
+      maven-args: verify
+    secrets: inherit
+
+  bom-contracts:
+    uses: ./.github/workflows/maven-ci.yml
+    with:
+      maven-args: -pl bom-contracts -am verify
+    secrets: inherit

@@ -1,0 +1,47 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":dependencyDashboard",
+    ":semanticCommits",
+    "helpers:pinGitHubActionDigests"
+  ],
+  "timezone": "America/Toronto",
+  "schedule": ["before 6am on monday"],
+  "labels": ["dependencies"],
+  "commitMessagePrefix": "chore(deps): ",
+  "rangeStrategy": "bump",
+  "packageRules": [
+    {
+      "description": "Automerge patch/minor for all ecosystems once CI passes.",
+      "matchUpdateTypes": ["patch", "minor"],
+      "automerge": true
+    },
+    {
+      "description": "Keep Maven dependency updates grouped.",
+      "matchManagers": ["maven"],
+      "groupName": "maven dependencies"
+    },
+    {
+      "description": "A Sequeless dependency bump must be a releasable change (fix), not chore (#17 §4).",
+      "matchPackageNames": ["org.sequeless:**"],
+      "semanticCommitType": "fix",
+      "groupName": "sequeless artifacts",
+      "automerge": false
+    },
+    {
+      "description": "The BOM lists released versions and is merged by a human after bom-contracts passes.",
+      "matchFileNames": ["sequeless-bom/pom.xml"],
+      "automerge": false
+    },
+    {
+      "description": "Reusable workflow refs from this repo are CI changes.",
+      "matchManagers": ["github-actions"],
+      "matchPackageNames": ["sequeless/sequeless-build"],
+      "groupName": "sequeless-build workflows",
+      "semanticCommitType": "ci"
+    }
+  ],
+  "maven": { "enabled": true },
+  "github-actions": { "enabled": true }
+}

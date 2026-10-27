@@ -1,0 +1,19 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "bump-minor-pre-major": true,
+  "include-component-in-tag": true,
+  "tag-separator": "-",
+  "plugins": [{ "type": "maven-workspace", "considerAllArtifacts": false }],
+  "packages": {
+    "sequeless-build-parent": {
+      "release-type": "maven",
+      "component": "sequeless-build-parent",
+      "release-as": "0.1.0"
+    },
+    ".github": {
+      "release-type": "simple",
+      "component": "workflows",
+      "release-as": "0.1.0"
+    }
+  }
+}

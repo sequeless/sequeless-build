@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.sequeless</groupId>
+  <artifactId>sequeless-build</artifactId>
+  <version>0.1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>Sequeless Build</name>
+  <description>Build conventions for Sequeless: parent POM, reusable workflows, Renovate preset and BOM.
+    Aggregator only; never released.</description>
+  <url>https://sequeless.org</url>
+
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+
+  <!-- Aggregator only: no parent, so none of the parent's build conventions run on this POM. -->
+  <modules>
+    <module>sequeless-build-parent</module>
+    <module>sequeless-bom</module>
+    <module>bom-contracts</module>
+  </modules>
+
+  <properties>
+    <maven.deploy.skip>true</maven.deploy.skip>
+    <maven.install.skip>true</maven.install.skip>
+  </properties>
+</project>

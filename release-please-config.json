@@ -3,7 +3,7 @@
   "bump-minor-pre-major": true,
   "include-component-in-tag": true,
   "tag-separator": "-",
-  "plugins": [{ "type": "maven-workspace", "considerAllArtifacts": true }],
+  "plugins": [{ "type": "maven-workspace", "considerAllArtifacts": false }],
   "packages": {
     "sequeless-build-parent": {
       "release-type": "maven",

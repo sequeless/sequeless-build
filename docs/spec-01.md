@@ -131,7 +131,7 @@ The Makefile, `mvnw`, commitlint, the devcontainer and the canonical `BoundaryRu
 ```
 sequeless-build (aggregator) ── modules ──► sequeless-build-parent, sequeless-bom, bom-contracts
 
-bom-contracts ── parent ──► sequeless-build-parent   (in-reactor, relativePath)
+bom-contracts ── no parent (repeats the parent's conventions; see its pom.xml)
 bom-contracts ── import ──► sequeless-bom            (in-reactor)
 sequeless-bom ── no parent ─ standalone; carries its own <repositories>/<distributionManagement>
 sequeless-build-parent ── no parent
@@ -251,9 +251,10 @@ first release. Rule: **the BOM only ever lists released versions**. `bom-contrac
 
 ### `bom-contracts`
 
-Test-only and never deployed (`maven.deploy.skip=true`, `maven.install.skip=true`). The parent is
-`sequeless-build-parent` via `relativePath`, and it imports `sequeless-bom` in
-`<dependencyManagement>`.
+Test-only and never deployed (`maven.deploy.skip=true`, `maven.install.skip=true`). It has **no
+parent**: a parent link would couple it to the parent's release version. Release PR #1 bumped the
+parent to 0.1.0 without this module, which is what PR #4 fixed. It repeats the parent's build
+conventions by hand, and it imports `sequeless-bom` and `junit-bom` in its own `<dependencyManagement>`.
 
 - **Contract run.** As later stages release testkits (`*-testfixtures`, `*-testkit`, for example
   `query-testkit`), each one is added here as a test-scope dependency with **no version** (the BOM
@@ -298,9 +299,16 @@ release-please, manifest mode (#17 §4).
 
 `.release-please-manifest.json`: `{}` at the import commit.
 
-- **First versions:** `sequeless-build-parent` **0.1.0** and `workflows` **0.1.0** (#23 §4: every
-  never-published module starts at 0.1.0). `release-as` pins the first run. Remove it in the PR
-  that follows the first release, or every later release would be 0.1.0 again.
+> **What happened (recorded after the fact).** The block above is the config as first written. The
+> `release-as` pins were removed in PR #7 and PR #12. The first deploy, of 0.1.0, failed on the repo
+> URL (PR #7 fixed it). release-please did not publish 0.1.1 either, so it was deployed by a manual
+> `workflow_dispatch` of `release.yml` from its tag (PR #11). Confirmed decision: the first Packages
+> version is **0.1.1**, not 0.1.0 (see the #23 comment).
+
+- **First versions:** #23 §4 pins the first release of a never-published module to 0.1.0. That
+  rule was not followed for `sequeless-build-parent`. Tags `sequeless-build-parent-v0.1.0` and
+  `workflows-v0.1.0` exist, but the 0.1.0 Maven artifact never reached Packages. The first Packages
+  version is **0.1.1** (decided: option A). `workflows` has no Maven artifact.
 - **Tags:** `sequeless-build-parent-v0.1.0` and `workflows-v0.1.0`, in the `<module>-vX.Y.Z` form
   from #17 §4.
 - **The reactor root and `bom-contracts`** are not packages: they are never released and their
@@ -353,7 +361,7 @@ rerun: the release PR's CI already ran them.
 
 ### This repo's own workflows
 
-- `ci.yml` (push to `main`, PRs):
+- `ci.yml` (push to `main`, PRs). Each job calls a reusable workflow whose job is named `maven`, so the check names are `build / maven` and `bom-contracts / maven`:
   - `uses: ./.github/workflows/maven-ci.yml` with `secrets: inherit`. This builds all three
     modules: Spotless, enforcer, `dependency:analyze` and `BomListsOnlyReleasesTest`.
   - Calling the reusable file by local path means every PR that changes a reusable workflow also
@@ -405,7 +413,7 @@ grouped). Add:
 
 ### Repo settings (the agent does these with `gh`; #50 gave the scopes)
 
-- Branch protection on `main`: require PRs, require the `ci / build` and `ci / bom-contracts`
+- Branch protection on `main`: require PRs, require the `build / maven` and `bom-contracts / maven`
   checks, allow linear history only.
 - Actions → General: allow every repo in the `sequeless` org to call this repo's workflows (needed
   for a public repo's reusable workflows to be callable; check what the org policy already allows).
@@ -433,13 +441,13 @@ Commit or PR boundaries:
 3. Set branch protection and the Actions access setting. Check that `ci` and `codeql` are green on
    `main`.
 4. Merge the first release-please PR, then check:
-   - the tags `sequeless-build-parent-v0.1.0` and `workflows-v0.1.0` exist;
-   - `org.sequeless:sequeless-build-parent:0.1.0` appears under the repo's Packages;
+   - the tags `sequeless-build-parent-v0.1.0`, `sequeless-build-parent-v0.1.1` and `workflows-v0.1.0` exist;
+   - `org.sequeless:sequeless-build-parent:0.1.1` appears under the repo's Packages (0.1.0 does not);
    - neither `sequeless-bom`, `bom-contracts` nor the aggregator was deployed;
    - the snapshot PR (`0.1.1-SNAPSHOT`) opened.
-5. Follow-up PR: remove both `release-as` keys.
+5. Follow-up PR: remove both `release-as` keys. Done: the keys came out in PR #7, and the 0.1.1 pin in PR #12.
 6. **Smoke test from outside:** in a scratch directory, a POM with
-   `<parent>org.sequeless:sequeless-build-parent:0.1.0</parent>` and the `github` repository runs
+   `<parent>org.sequeless:sequeless-build-parent:0.1.1</parent>` and the `github` repository runs
    `mvn -B validate` using a `read:packages` token. This proves the read path that spec 3 depends
    on.
 7. Tell the owner the server ID (`github`) for their `~/.m2/settings.xml`. This closes the last open
@@ -459,5 +467,5 @@ The issue's checklist, read for a stage-0 repo that moves no code and releases n
 | The new repo's CI is green | `ci` (build and bom-contracts) and `codeql` are green on `main` at the release commit. |
 | The prototype's CI is green against released artifacts | The prototype is not changed by this spec and stays green. Consuming the released parent is spec 3. Step 6 (the smoke test) shows that spec 3 can resolve the parent. |
 | The BOM's CI, which runs every testkit contract, is green | `bom-contracts` is green: `BomListsOnlyReleasesTest` passes and there are no contracts yet. |
-| The release and the BOM re-release are done | `sequeless-build-parent` 0.1.0 and `workflows` 0.1.0 are released and the parent is deployed. **BOM: not released by design.** Its first release is in stage 1. |
+| The release and the BOM re-release are done | `sequeless-build-parent` 0.1.1 is released and deployed to Packages; 0.1.0 has a tag and GitHub release but no Packages artifact (#23 §4 deviation, decided: option A). `workflows` 0.1.0 is released as a tag only. **BOM: not released by design.** Its first release is in stage 1. |
 | Cut-over: the prototype deleted the moved code, with a reverse pointer | Not a cut-over spec. The only prototype change is removing this spec file (step 2). |

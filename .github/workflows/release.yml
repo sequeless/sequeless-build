@@ -3,6 +3,12 @@ name: Release
 on:
   push:
     branches: [main]
+  workflow_dispatch:
+    inputs:
+      deploy-tag:
+        description: Tag to deploy, for example sequeless-build-parent-v0.1.1. Only the parent is deployed.
+        required: true
+        type: string
 
 permissions:
   contents: write
@@ -11,5 +17,35 @@ permissions:
 
 jobs:
   release:
+    if: github.event_name == 'push'
     uses: ./.github/workflows/maven-release.yml
     secrets: inherit
+
+  deploy-tag:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check the tag names the parent
+        env:
+          TAG: ${{ inputs.deploy-tag }}
+        run: |
+          case "$TAG" in
+            sequeless-build-parent-v*) ;;
+            *) echo "Refusing to deploy $TAG: only sequeless-build-parent-v* tags are deployed here."; exit 1 ;;
+          esac
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: refs/tags/${{ inputs.deploy-tag }}
+      - uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6
+        with:
+          distribution: temurin
+          java-version: '25'
+          cache: maven
+          server-id: github
+          server-username: MAVEN_USERNAME
+          server-password: MAVEN_PASSWORD
+      - name: Deploy the parent at the tag
+        env:
+          MAVEN_USERNAME: ${{ github.actor }}
+          MAVEN_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+        run: mvn -B -ntp -Prelease -pl sequeless-build-parent deploy -DskipTests

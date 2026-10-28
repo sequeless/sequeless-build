@@ -131,7 +131,7 @@ The Makefile, `mvnw`, commitlint, the devcontainer and the canonical `BoundaryRu
 ```
 sequeless-build (aggregator) ── modules ──► sequeless-build-parent, sequeless-bom, bom-contracts
 
-bom-contracts ── parent ──► sequeless-build-parent   (in-reactor, relativePath)
+bom-contracts ── no parent (repeats the parent's conventions; see its pom.xml)
 bom-contracts ── import ──► sequeless-bom            (in-reactor)
 sequeless-bom ── no parent ─ standalone; carries its own <repositories>/<distributionManagement>
 sequeless-build-parent ── no parent
@@ -251,9 +251,10 @@ first release. Rule: **the BOM only ever lists released versions**. `bom-contrac
 
 ### `bom-contracts`
 
-Test-only and never deployed (`maven.deploy.skip=true`, `maven.install.skip=true`). The parent is
-`sequeless-build-parent` via `relativePath`, and it imports `sequeless-bom` in
-`<dependencyManagement>`.
+Test-only and never deployed (`maven.deploy.skip=true`, `maven.install.skip=true`). It has **no
+parent**: a parent link would couple it to the parent's release version. Release PR #1 bumped the
+parent to 0.1.0 without this module, which is what PR #4 fixed. It repeats the parent's build
+conventions by hand, and it imports `sequeless-bom` and `junit-bom` in its own `<dependencyManagement>`.
 
 - **Contract run.** As later stages release testkits (`*-testfixtures`, `*-testkit`, for example
   `query-testkit`), each one is added here as a test-scope dependency with **no version** (the BOM
@@ -353,7 +354,7 @@ rerun: the release PR's CI already ran them.
 
 ### This repo's own workflows
 
-- `ci.yml` (push to `main`, PRs):
+- `ci.yml` (push to `main`, PRs). Each job calls a reusable workflow whose job is named `maven`, so the check names are `build / maven` and `bom-contracts / maven`:
   - `uses: ./.github/workflows/maven-ci.yml` with `secrets: inherit`. This builds all three
     modules: Spotless, enforcer, `dependency:analyze` and `BomListsOnlyReleasesTest`.
   - Calling the reusable file by local path means every PR that changes a reusable workflow also
@@ -405,7 +406,7 @@ grouped). Add:
 
 ### Repo settings (the agent does these with `gh`; #50 gave the scopes)
 
-- Branch protection on `main`: require PRs, require the `ci / build` and `ci / bom-contracts`
+- Branch protection on `main`: require PRs, require the `build / maven` and `bom-contracts / maven`
   checks, allow linear history only.
 - Actions → General: allow every repo in the `sequeless` org to call this repo's workflows (needed
   for a public repo's reusable workflows to be callable; check what the org policy already allows).

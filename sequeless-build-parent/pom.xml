@@ -36,6 +36,8 @@
     <!-- Libraries keep 21; apps set 25. The build JDK is always 25 (enforcer below). -->
     <maven.compiler.release>21</maven.compiler.release>
     <!-- Each repo sets this to its GitHub repository name; used in the deploy URL. -->
+    <!-- Must name this repo. The deploy URL is built from it, and a wrong value sends 0.1.0 to
+         a package that does not exist. -->
     <sequeless.github.repository>sequeless-build</sequeless.github.repository>
     <!-- Core modules set this to false to ban Spring, Jena and Lombok. -->
     <sequeless.enforcer.core.skip>true</sequeless.enforcer.core.skip>

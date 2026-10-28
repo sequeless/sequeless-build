@@ -12,7 +12,8 @@
   "packages": {
     "sequeless-build-parent": {
       "release-type": "maven",
-      "component": "sequeless-build-parent"
+      "component": "sequeless-build-parent",
+      "release-as": "0.1.1"
     },
     ".github": {
       "release-type": "simple",

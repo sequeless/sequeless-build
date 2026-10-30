@@ -4,7 +4,7 @@
 
   <groupId>org.sequeless</groupId>
   <artifactId>sequeless-build-parent</artifactId>
-  <version>0.1.2-SNAPSHOT</version>
+  <version>0.1.2</version>
   <packaging>pom</packaging>
 
   <name>Sequeless Build Parent</name>

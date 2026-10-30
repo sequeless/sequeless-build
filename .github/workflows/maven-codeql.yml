@@ -9,6 +9,9 @@ on:
       java-version:
         type: string
         default: '25'
+    secrets:
+      PACKAGES_READ_TOKEN:
+        required: false
 
 permissions:
   contents: read
@@ -29,12 +32,18 @@ jobs:
           distribution: temurin
           java-version: ${{ inputs.java-version }}
           cache: maven
+          server-id: github
+          server-username: MAVEN_USERNAME
+          server-password: MAVEN_PASSWORD
       - uses: github/codeql-action/init@4bfa242aa49c5f7c6770b98670d354a7dfac05f8 # v3
         with:
           languages: ${{ matrix.language }}
           build-mode: ${{ matrix.language == 'java-kotlin' && 'manual' || 'none' }}
       - name: Manual build (Java)
         if: matrix.language == 'java-kotlin'
+        env:
+          MAVEN_USERNAME: ${{ github.actor }}
+          MAVEN_PASSWORD: ${{ secrets.PACKAGES_READ_TOKEN || secrets.GITHUB_TOKEN }}
         run: mvn -B -ntp -DskipTests -DskipITs -Dspotless.check.skip=true package
       - uses: github/codeql-action/analyze@4bfa242aa49c5f7c6770b98670d354a7dfac05f8 # v3
         with:

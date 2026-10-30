@@ -26,6 +26,9 @@ a Renovate preset, and the BOM (for hosts only).
 - **Targeted deploy.** The release deploys only the released modules, in two steps: `install -am`
   to build upstreams locally, then `deploy -pl <released>`. A single `-am deploy` would also deploy
   upstreams that are SNAPSHOTs or already published (corrects #17 §4).
+- **Class files.** Plugins that read class files (dependency analysis, JaCoCo) must be new enough
+  for the highest `maven.compiler.release` a consumer uses. Apps build at 25, and dependency-plugin
+  3.8.1 and JaCoCo 0.8.12 cannot read Java 25 class files, so both are now 3.10.0 and 0.8.14.
 
 ## Consuming
 

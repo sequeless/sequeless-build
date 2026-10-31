@@ -13,7 +13,8 @@
     "sequeless-build-parent": {
       "release-type": "maven",
       "component": "sequeless-build-parent",
-      "release-as": "0.1.3"
+      "release-as": "0.1.3",
+      "skip-snapshot": true
     },
     ".github": {
       "release-type": "simple",

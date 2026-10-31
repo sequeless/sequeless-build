@@ -320,9 +320,12 @@ release-please, manifest mode (#17 §4).
   POMs say `maven.deploy.skip=true`.
 - **`sequeless-bom` is left out of the config at stage 0** ("exists but unreleased", #23). Stage 1
   adds it with `release-as: 0.1.0` once its first entries land. **BOM change in this spec: none.**
-- **Snapshot PR:** the `maven` release type opens a PR that moves the module to the next
-  `-SNAPSHOT` after each release (#17 §4). Confirm this on the first release, and if it does not
-  happen, record why in the README.
+- **Snapshot PR:** the `maven` release type was meant to open a PR that moves the module to the next
+  `-SNAPSHOT` after each release (#17 §4). It did not: the combined release PR (`chore: release main`)
+  has no component or version in its title, so release-please never sees a snapshot commit and
+  opens an empty snapshot PR on every run (#23). Decision (#62): `sequeless-build-parent` sets
+  `skip-snapshot: true`, so the next run opens a release PR. The parent stays at the released
+  version after a release, and each release sets its own version.
 - **Workflows are versioned too.** Consumers call `sequeless/sequeless-build/.github/workflows/maven-ci.yml@workflows-vX.Y.Z`,
   and Renovate's `github-actions` manager bumps the ref. The **Renovate preset is not versioned**:
   consumers extend `github>sequeless/sequeless-build` on the default branch, so a rule change

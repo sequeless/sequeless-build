@@ -20,10 +20,13 @@ Notes for agents working in this repo. The spec is `docs/spec-01.md`.
   (PR #25), so its release PR opens. The parent stays at the released version after a release.
 - `release-as` is set for the parent (PR #24). It did not stop the snapshot path, so keep
   `skip-snapshot` with it.
-- A release with a tag but no GitHub release object is found by tag fallback. release-please logs
-  "Expected 2 releases, only found 1". `sequeless-build-parent-v0.1.2` has a tag and no GitHub
-  release. Its next CHANGELOG pulled in commits from before 0.1.2 (PR #26). Create the missing release
-  object, then rerun Release to regenerate the CHANGELOG.
+- release-please finds the last release from GitHub release objects. A tag without one is found by
+  tag fallback, and the log says "Expected 2 releases, only found 1". `sequeless-build-parent-v0.1.2`
+  had a tag and no GitHub release, so one was created on 2026-10-31.
+- `.release-please-manifest.json` must hold the last published version. A release PR moves it on
+  merge. If that release is never published, the manifest stays ahead, release-please looks for a tag
+  that does not exist, and the next CHANGELOG pulls in older commits. Fix: set the manifest back to
+  the last published version (PR #29), then rerun Release.
 
 ## Merging
 
@@ -33,6 +36,7 @@ Notes for agents working in this repo. The spec is `docs/spec-01.md`.
 ## Published versions
 
 - `sequeless-build-parent`: 0.1.0 (tag only), 0.1.1 (first GitHub Packages version, deployed by a
-  manual `workflow_dispatch` of `release.yml`, PR #11), 0.1.2 (released by hand, PR #20; the template pins it).
+  manual `workflow_dispatch` of `release.yml`, PR #11), 0.1.2 (released by hand, PR #20; the template
+  pins it), 0.1.3 (release PR #26, tag `sequeless-build-parent-v0.1.3`, resolved from GitHub Packages).
 - `workflows`: tags `workflows-v0.1.0`, `workflows-v0.1.1` and `workflows-v0.1.2` (PR #22).
   The template pins `workflows-v0.1.1`.

@@ -44,3 +44,21 @@ Add the GitHub Packages repository to your root POM. A token is needed even for 
 ```
 
 Use server ID `github` in `~/.m2/settings.xml`.
+
+## Local setup
+
+Maven needs a token with `read:packages` for `maven.pkg.github.com`. Export it as `GITHUB_PACKAGES_TOKEN`
+before any `mvn` run, and let the `github` server read it:
+
+```xml
+<server>
+  <id>github</id>
+  <username>YOUR_GITHUB_LOGIN</username>
+  <password>${env.GITHUB_PACKAGES_TOKEN}</password>
+</server>
+```
+
+The parent runs `spotless:check` at `verify`, and it rejects a POM that is valid XML but not in the
+formatter's layout. To fix that, run `mvn spotless:apply`, then `mvn verify` again.
+
+SonarCloud is optional. `maven-sonar.yml` skips with a notice when the caller has no `SONAR_TOKEN`.

@@ -72,6 +72,19 @@
         <version>${archunit.version}</version>
         <scope>test</scope>
       </dependency>
+      <!-- Versions only: a consumer that imports these must still declare them, or dependency:analyze reports them as used undeclared. -->
+      <dependency>
+        <groupId>com.tngtech.archunit</groupId>
+        <artifactId>archunit</artifactId>
+        <version>${archunit.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.tngtech.archunit</groupId>
+        <artifactId>archunit-junit5-api</artifactId>
+        <version>${archunit.version}</version>
+        <scope>test</scope>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 

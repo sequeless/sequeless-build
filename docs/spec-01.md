@@ -309,6 +309,11 @@ release-please, manifest mode (#17 §4).
   rule was not followed for `sequeless-build-parent`. Tags `sequeless-build-parent-v0.1.0` and
   `workflows-v0.1.0` exist, but the 0.1.0 Maven artifact never reached Packages. The first Packages
   version is **0.1.1** (decided: option A). `workflows` has no Maven artifact.
+- **Published parent versions:** 0.1.1 (first Packages version, above) and 0.1.2 (released by hand, #20;
+  the template pins it). A consumer pins the parent version as a literal in its POM
+  (`sequeless-template/template-core/pom.xml`), and Renovate bumps that literal. Nothing in the POM
+  follows the latest release, so a new parent version reaches a consumer only through Renovate or a
+  manual bump (#62, F4).
 - **Tags:** `sequeless-build-parent-v0.1.0` and `workflows-v0.1.0`, in the `<module>-vX.Y.Z` form
   from #17 §4.
 - **The reactor root and `bom-contracts`** are not packages: they are never released and their
@@ -340,6 +345,12 @@ preset's `helpers:pinGitHubActionDigests`).
 | `maven-codeql.yml` | `languages` (a JSON array such as `["java-kotlin"]`, or one plain language such as `java-kotlin`), `java-version` | `PACKAGES_READ_TOKEN` (optional) | filter's CodeQL job, generalised to a `languages` matrix. Java uses build-mode `manual` with `mvn -DskipTests -DskipITs -Dspotless.check.skip=true package`. `actions` uses build-mode `none`. `security-events: write`. |
 | `maven-sonar.yml` | `java-version`, `sonar-organization` (`sequeless`) | `SONAR_TOKEN` (optional), `PACKAGES_READ_TOKEN` (optional) | filter's Sonar job with `fetch-depth: 0` and ontology's `-Dsonar.organization`. It skips with a notice when `SONAR_TOKEN` is absent. |
 | `maven-release.yml` | `java-version` | `PACKAGES_READ_TOKEN` (optional), `RELEASE_PLEASE_TOKEN` (optional) | See below. `permissions: contents: write, pull-requests: write, packages: write`. |
+
+**Decision (#62): `maven-sonar.yml` stays, as an optional reusable workflow.** A caller with no
+`SONAR_TOKEN` gets a skip notice and a passing job. No repo calls it today. The template's spec
+(`docs/specs/stage-0-sequeless-template.md`, the `ci.yml` row) and the prototype's spec 3 drop the Sonar
+job, because the SonarCloud app analyses PRs without it. A repo that wants the scan adds the job and
+creates its SonarCloud project by hand.
 
 **`maven-release.yml`, step by step:**
 

@@ -31,7 +31,8 @@ Notes for agents working in this repo. The spec is `docs/spec-01.md`.
 ## Merging
 
 - Merge PRs with a rebase, not a merge commit: `gh pr merge <n> --rebase`, after checks pass.
-- Confirm before merging any release PR, because it publishes.
+- A patch or minor release PR can be merged after checks pass, without asking. Read its diff first.
+  Confirm before merging a major release PR, because it publishes.
 
 ## Published versions
 

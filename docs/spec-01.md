@@ -337,7 +337,7 @@ preset's `helpers:pinGitHubActionDigests`).
 | File | Inputs | Secrets | What it does |
 |---|---|---|---|
 | `maven-ci.yml` | `java-version` (`'25'`), `maven-args` (`verify`) | `PACKAGES_READ_TOKEN` (optional) | `setup-java` with `server-username: GITHUB_ACTOR` and `server-password` from the read token, falling back to `GITHUB_TOKEN`, then `mvn -B -ntp ${maven-args}`. `permissions: contents: read, packages: read`. Concurrency group `ci-${{ github.ref }}` with cancel-in-progress. |
-| `maven-codeql.yml` | `languages` (`java-kotlin`), `java-version` | `PACKAGES_READ_TOKEN` (optional) | filter's CodeQL job, generalised to a `languages` matrix. Java uses build-mode `manual` with `mvn -DskipTests -DskipITs -Dspotless.check.skip=true package`. `actions` uses build-mode `none`. `security-events: write`. |
+| `maven-codeql.yml` | `languages` (a JSON array such as `["java-kotlin"]`, or one plain language such as `java-kotlin`), `java-version` | `PACKAGES_READ_TOKEN` (optional) | filter's CodeQL job, generalised to a `languages` matrix. Java uses build-mode `manual` with `mvn -DskipTests -DskipITs -Dspotless.check.skip=true package`. `actions` uses build-mode `none`. `security-events: write`. |
 | `maven-sonar.yml` | `java-version`, `sonar-organization` (`sequeless`) | `SONAR_TOKEN` (optional), `PACKAGES_READ_TOKEN` (optional) | filter's Sonar job with `fetch-depth: 0` and ontology's `-Dsonar.organization`. It skips with a notice when `SONAR_TOKEN` is absent. |
 | `maven-release.yml` | `java-version` | `PACKAGES_READ_TOKEN` (optional), `RELEASE_PLEASE_TOKEN` (optional) | See below. `permissions: contents: write, pull-requests: write, packages: write`. |
 

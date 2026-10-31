@@ -159,7 +159,7 @@ dependencies directly.
 | `skipITs` | `false` | |
 | Plugin and ArchUnit versions | see below | One property per version, so that Renovate bumps them in one place |
 
-**`<dependencyManagement>`**: **only** `com.tngtech.archunit:archunit-junit5` (`1.5.0`, test scope).
+**`<dependencyManagement>`**: **only** the ArchUnit artifacts, `com.tngtech.archunit:archunit-junit5`, `archunit` and `archunit-junit5-api` (all `1.5.0`, test scope). Versions only: a consumer declares them without a version, or `dependency:analyze` reports them as used undeclared (#62 F1).
 The parent deliberately does **not** manage JUnit, AssertJ, Mockito, Testcontainers or Lombok.
 `spring-boot-dependencies` manages all of them, and a version in an inherited
 `<dependencyManagement>` overrides an *imported* BOM. That would silently override Spring Boot's

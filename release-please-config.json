@@ -16,6 +16,12 @@
       "release-as": "0.1.3",
       "skip-snapshot": true
     },
+    "sequeless-bom": {
+      "release-type": "maven",
+      "component": "sequeless-bom",
+      "initial-version": "0.1.0",
+      "skip-snapshot": true
+    },
     ".github": {
       "release-type": "simple",
       "component": "workflows"

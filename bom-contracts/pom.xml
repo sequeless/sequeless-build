@@ -39,15 +39,10 @@
     <palantir-java-format.version>2.102.0</palantir-java-format.version>
   </properties>
 
+  <!-- The sequeless-bom import returns with the first testkit contract this module runs against the BOM
+       (#17, section 6). Importing it at 0.1.0-SNAPSHOT breaks the BOM release PR, which sets the BOM to 0.1.0. -->
   <dependencyManagement>
     <dependencies>
-      <dependency>
-        <groupId>org.sequeless</groupId>
-        <artifactId>sequeless-bom</artifactId>
-        <version>0.1.0-SNAPSHOT</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
       <dependency>
         <groupId>org.junit</groupId>
         <artifactId>junit-bom</artifactId>

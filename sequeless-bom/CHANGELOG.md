@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/sequeless/sequeless-build/compare/sequeless-bom-v0.1.0...sequeless-bom-v0.1.1) (2026-11-04)
+
+
+### Bug Fixes
+
+* **bom:** list filter-sql-adapter 0.1.4, filter-sql-testkit and filter-sql-postgres-adapter ([b4027f8](https://github.com/sequeless/sequeless-build/commit/b4027f89deba0de9b30841637edf29180cc05b41))
+
 ## 0.1.0 (2026-11-04)
 
 

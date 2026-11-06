@@ -58,6 +58,26 @@
         <artifactId>filter-sql-postgres-adapter</artifactId>
         <version>0.1.0</version>
       </dependency>
+      <dependency>
+        <groupId>org.sequeless</groupId>
+        <artifactId>expression-api</artifactId>
+        <version>0.1.1</version>
+      </dependency>
+      <dependency>
+        <groupId>org.sequeless</groupId>
+        <artifactId>expression-testkit</artifactId>
+        <version>0.1.1</version>
+      </dependency>
+      <dependency>
+        <groupId>org.sequeless</groupId>
+        <artifactId>expression-jexl-adapter</artifactId>
+        <version>0.1.1</version>
+      </dependency>
+      <dependency>
+        <groupId>org.sequeless</groupId>
+        <artifactId>expression-spring-boot-autoconfig</artifactId>
+        <version>0.1.1</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 

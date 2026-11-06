@@ -39,14 +39,23 @@
     <palantir-java-format.version>2.102.0</palantir-java-format.version>
   </properties>
 
-  <!-- The sequeless-bom import returns with the first testkit contract this module runs against the BOM
-       (#17, section 6). Importing it at 0.1.0-SNAPSHOT breaks the BOM release PR, which sets the BOM to 0.1.0. -->
+  <!-- The sequeless-bom import is pinned to a released version, never a SNAPSHOT: importing
+       0.1.0-SNAPSHOT broke the BOM release PR, which sets the BOM to 0.1.0. The expression contract
+       (ExpressionBomContractTest, prototype spec 9, #37) is the first testkit contract this module
+       runs against it, so the import returns here (#17, section 6). Bump it when the BOM is released. -->
   <dependencyManagement>
     <dependencies>
       <dependency>
         <groupId>org.junit</groupId>
         <artifactId>junit-bom</artifactId>
         <version>${junit-bom.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.sequeless</groupId>
+        <artifactId>sequeless-bom</artifactId>
+        <version>0.1.2</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -65,7 +74,37 @@
       <version>${assertj-core.version}</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.sequeless</groupId>
+      <artifactId>expression-api</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.sequeless</groupId>
+      <artifactId>expression-jexl-adapter</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.sequeless</groupId>
+      <artifactId>expression-testkit</artifactId>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
+
+  <!-- No parent, so the GitHub Packages repository is repeated from sequeless-build-parent
+       (the expression artifacts are resolved from it). Credentials come from settings.xml. -->
+  <repositories>
+    <repository>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <id>github</id>
+      <url>https://maven.pkg.github.com/sequeless/*</url>
+    </repository>
+  </repositories>
 
   <build>
     <plugins>

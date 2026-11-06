@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/sequeless/sequeless-build/compare/sequeless-bom-v0.1.1...sequeless-bom-v0.1.2) (2026-11-06)
+
+
+### Bug Fixes
+
+* **bom:** list the expression modules at 0.1.1 (sequeless-expression [#36](https://github.com/sequeless/sequeless-build/issues/36)) ([1e5c73d](https://github.com/sequeless/sequeless-build/commit/1e5c73dace62b0f989a5f7400978936409cd139f))
+
 ## [0.1.1](https://github.com/sequeless/sequeless-build/compare/sequeless-bom-v0.1.0...sequeless-bom-v0.1.1) (2026-11-04)
 
 

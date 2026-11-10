@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3](https://github.com/sequeless/sequeless-build/compare/workflows-v0.1.2...workflows-v0.1.3) (2026-11-10)
+
+
+### Bug Fixes
+
+* **codeql:** grant packages read to the Maven CodeQL job ([#44](https://github.com/sequeless/sequeless-build/issues/44)) ([a92cde1](https://github.com/sequeless/sequeless-build/commit/a92cde1717703cba417ccf45cb142f8cf821bfdc))
+
 ## [0.1.2](https://github.com/sequeless/sequeless-build/compare/workflows-v0.1.1...workflows-v0.1.2) (2026-10-31)
 
 

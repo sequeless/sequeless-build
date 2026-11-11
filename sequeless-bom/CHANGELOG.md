@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3](https://github.com/sequeless/sequeless-build/compare/sequeless-bom-v0.1.2...sequeless-bom-v0.1.3) (2026-11-11)
+
+
+### Bug Fixes
+
+* **bom:** list the ontology modules at 0.1.0 ([#46](https://github.com/sequeless/sequeless-build/issues/46)) ([c22f30a](https://github.com/sequeless/sequeless-build/commit/c22f30afe71b98cc35cbe66b2c106cd154b834b9))
+
 ## [0.1.2](https://github.com/sequeless/sequeless-build/compare/sequeless-bom-v0.1.1...sequeless-bom-v0.1.2) (2026-11-06)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.4](https://github.com/sequeless/sequeless-build/compare/sequeless-bom-v0.1.3...sequeless-bom-v0.1.4) (2026-11-11)
+
+
+### Bug Fixes
+
+* **bom:** list the released filter artifacts at their current versions ([#49](https://github.com/sequeless/sequeless-build/issues/49)) ([593d03d](https://github.com/sequeless/sequeless-build/commit/593d03d0e261ec44b1bfcc351dcec6f7d9cc7365))
+
 ## [0.1.3](https://github.com/sequeless/sequeless-build/compare/sequeless-bom-v0.1.2...sequeless-bom-v0.1.3) (2026-11-11)
 
 

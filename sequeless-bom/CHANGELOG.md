@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.5](https://github.com/sequeless/sequeless-build/compare/sequeless-bom-v0.1.4...sequeless-bom-v0.1.5) (2026-11-13)
+
+
+### Bug Fixes
+
+* **bom:** list ontology-jena-adapter at its released 0.1.1 ([#52](https://github.com/sequeless/sequeless-build/issues/52)) ([ff1033a](https://github.com/sequeless/sequeless-build/commit/ff1033aba102ae190c498fabd7ec02cc22884f02))
+
 ## [0.1.4](https://github.com/sequeless/sequeless-build/compare/sequeless-bom-v0.1.3...sequeless-bom-v0.1.4) (2026-11-11)
 
 

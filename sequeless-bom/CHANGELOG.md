@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/sequeless/sequeless-build/compare/sequeless-bom-v0.2.0...sequeless-bom-v0.3.0) (2026-11-26)
+
+
+### Features
+
+* **bom:** sequeless-knowledge artifacts and their contract (spec 19) (Refs [#47](https://github.com/sequeless/sequeless-build/issues/47)) ([#65](https://github.com/sequeless/sequeless-build/issues/65)) ([cabb233](https://github.com/sequeless/sequeless-build/commit/cabb2330c5eb5f406805ac154a08726a2c099111))
+
 ## [0.2.0](https://github.com/sequeless/sequeless-build/compare/sequeless-bom-v0.1.6...sequeless-bom-v0.2.0) (2026-11-26)
 
 

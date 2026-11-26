@@ -42,7 +42,7 @@
       <dependency>
         <groupId>org.sequeless</groupId>
         <artifactId>filter-core</artifactId>
-        <version>0.1.4</version>
+        <version>0.1.5</version>
       </dependency>
       <dependency>
         <groupId>org.sequeless</groupId>
@@ -92,7 +92,7 @@
       <dependency>
         <groupId>org.sequeless</groupId>
         <artifactId>schema-contract</artifactId>
-        <version>0.1.0</version>
+        <version>0.2.0</version>
       </dependency>
       <dependency>
         <groupId>org.sequeless</groupId>
@@ -139,6 +139,42 @@
         <groupId>org.sequeless</groupId>
         <artifactId>ontology-testfixtures</artifactId>
         <version>0.1.0</version>
+      </dependency>
+      <!-- Query artifacts at their released versions (spec 14, item 6). -->
+      <dependency>
+        <groupId>org.sequeless</groupId>
+        <artifactId>query-field</artifactId>
+        <version>0.1.1</version>
+      </dependency>
+      <dependency>
+        <groupId>org.sequeless</groupId>
+        <artifactId>query-field-testfixtures</artifactId>
+        <version>0.2.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.sequeless</groupId>
+        <artifactId>query-core</artifactId>
+        <version>0.2.1</version>
+      </dependency>
+      <dependency>
+        <groupId>org.sequeless</groupId>
+        <artifactId>query-schema-adapter</artifactId>
+        <version>0.2.1</version>
+      </dependency>
+      <dependency>
+        <groupId>org.sequeless</groupId>
+        <artifactId>query-testkit</artifactId>
+        <version>0.2.1</version>
+      </dependency>
+      <dependency>
+        <groupId>org.sequeless</groupId>
+        <artifactId>query-postgres-jsonb-adapter</artifactId>
+        <version>0.2.1</version>
+      </dependency>
+      <dependency>
+        <groupId>org.sequeless</groupId>
+        <artifactId>query-spring-boot-autoconfig</artifactId>
+        <version>0.2.1</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

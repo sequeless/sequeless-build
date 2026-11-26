@@ -131,6 +131,16 @@
     </dependency>
     <dependency>
       <groupId>org.sequeless</groupId>
+      <artifactId>query-core</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.sequeless</groupId>
+      <artifactId>query-testkit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.sequeless</groupId>
       <artifactId>schema-contract</artifactId>
       <scope>test</scope>
     </dependency>

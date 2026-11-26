@@ -132,11 +132,16 @@
     <dependency>
       <groupId>org.sequeless</groupId>
       <artifactId>query-core</artifactId>
+      <!-- Pinned to the published query release that sequeless-bom lists (0.2.1). The sequeless-bom import below
+           stays at the last released BOM, which does not list the query artifacts yet; this keeps the reactor
+           resolvable before the BOM release that adds them. -->
+      <version>0.2.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.sequeless</groupId>
       <artifactId>query-testkit</artifactId>
+      <version>0.2.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>

@@ -137,6 +137,21 @@
       </dependency>
       <dependency>
         <groupId>org.sequeless</groupId>
+        <artifactId>knowledge-core</artifactId>
+        <version>0.1.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.sequeless</groupId>
+        <artifactId>knowledge-testkit</artifactId>
+        <version>0.1.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.sequeless</groupId>
+        <artifactId>knowledge-spring-boot-autoconfig</artifactId>
+        <version>0.1.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.sequeless</groupId>
         <artifactId>ontology-testfixtures</artifactId>
         <version>0.1.0</version>
       </dependency>

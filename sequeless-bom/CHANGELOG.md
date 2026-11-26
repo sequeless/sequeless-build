@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/sequeless/sequeless-build/compare/sequeless-bom-v0.1.6...sequeless-bom-v0.2.0) (2026-11-26)
+
+
+### Features
+
+* **bom:** query artifacts in sequeless-bom and the query contracts against the BOM (spec 14 item 6) ([#62](https://github.com/sequeless/sequeless-build/issues/62)) ([0724736](https://github.com/sequeless/sequeless-build/commit/072473666ffed187fbed725ed996c28bc0333517))
+
 ## [0.1.6](https://github.com/sequeless/sequeless-build/compare/sequeless-bom-v0.1.5...sequeless-bom-v0.1.6) (2026-11-26)
 
 

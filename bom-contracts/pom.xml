@@ -111,6 +111,20 @@
     </dependency>
     <dependency>
       <groupId>org.sequeless</groupId>
+      <artifactId>knowledge-core</artifactId>
+      <!-- Pinned to the released knowledge version (0.1.0), as query-core is pinned above: the sequeless-bom import does not list it yet. -->
+      <version>0.1.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.sequeless</groupId>
+      <artifactId>knowledge-testkit</artifactId>
+      <!-- Pinned to the released knowledge version (0.1.0), as query-core is pinned above: the sequeless-bom import does not list it yet. -->
+      <version>0.1.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.sequeless</groupId>
       <artifactId>kernel-identity</artifactId>
       <scope>test</scope>
     </dependency>

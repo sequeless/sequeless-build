@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.6](https://github.com/sequeless/sequeless-build/compare/sequeless-bom-v0.1.5...sequeless-bom-v0.1.6) (2026-11-26)
+
+
+### Bug Fixes
+
+* **bom:** list the six automation modules at 0.1.0 ([0a75d73](https://github.com/sequeless/sequeless-build/commit/0a75d733d4d3451201091498f454ab14b9fc99ef))
+
 ## [0.1.5](https://github.com/sequeless/sequeless-build/compare/sequeless-bom-v0.1.4...sequeless-bom-v0.1.5) (2026-11-13)
 
 

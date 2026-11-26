@@ -55,7 +55,7 @@
       <dependency>
         <groupId>org.sequeless</groupId>
         <artifactId>sequeless-bom</artifactId>
-        <version>0.1.5</version>
+        <version>0.1.6</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -76,6 +76,26 @@
     </dependency>
     <dependency>
       <groupId>org.sequeless</groupId>
+      <artifactId>automation-api</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.sequeless</groupId>
+      <artifactId>automation-contract</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.sequeless</groupId>
+      <artifactId>automation-inprocess-adapter</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.sequeless</groupId>
+      <artifactId>automation-testkit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.sequeless</groupId>
       <artifactId>expression-api</artifactId>
       <scope>test</scope>
     </dependency>
@@ -87,6 +107,11 @@
     <dependency>
       <groupId>org.sequeless</groupId>
       <artifactId>expression-testkit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.sequeless</groupId>
+      <artifactId>kernel-identity</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>

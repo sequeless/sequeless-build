@@ -104,6 +104,37 @@
         <artifactId>automation-contract</artifactId>
         <version>0.1.0</version>
       </dependency>
+      <!-- Stage 4: sequeless-automation at its released 0.1.0 (spec 15, section 6). -->
+      <dependency>
+        <groupId>org.sequeless</groupId>
+        <artifactId>automation-api</artifactId>
+        <version>0.1.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.sequeless</groupId>
+        <artifactId>automation-core</artifactId>
+        <version>0.1.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.sequeless</groupId>
+        <artifactId>automation-testkit</artifactId>
+        <version>0.1.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.sequeless</groupId>
+        <artifactId>automation-inprocess-adapter</artifactId>
+        <version>0.1.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.sequeless</groupId>
+        <artifactId>automation-temporal-adapter</artifactId>
+        <version>0.1.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.sequeless</groupId>
+        <artifactId>automation-spring-boot-autoconfig</artifactId>
+        <version>0.1.0</version>
+      </dependency>
       <dependency>
         <groupId>org.sequeless</groupId>
         <artifactId>ontology-testfixtures</artifactId>

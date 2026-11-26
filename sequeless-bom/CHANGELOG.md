@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.2](https://github.com/sequeless/sequeless-build/compare/sequeless-bom-v0.3.1...sequeless-bom-v0.3.2) (2026-11-26)
+
+
+### Bug Fixes
+
+* **bom:** list query-schema-adapter 0.2.3 and query-spring-boot-autoconfig 0.3.0 (spec 17, sequeless-prototype [#45](https://github.com/sequeless/sequeless-build/issues/45)) ([#69](https://github.com/sequeless/sequeless-build/issues/69)) ([e08cde6](https://github.com/sequeless/sequeless-build/commit/e08cde61ac3a886c660b976d8953a1a8e888202e))
+
 ## [0.3.1](https://github.com/sequeless/sequeless-build/compare/sequeless-bom-v0.3.0...sequeless-bom-v0.3.1) (2026-11-26)
 
 

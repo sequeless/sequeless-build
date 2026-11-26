@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/sequeless/sequeless-build/compare/sequeless-bom-v0.3.0...sequeless-bom-v0.3.1) (2026-11-26)
+
+
+### Bug Fixes
+
+* **bom:** list query-schema-adapter 0.2.2, which sorts single-valued properties (spec 17, sequeless-prototype [#45](https://github.com/sequeless/sequeless-build/issues/45)) ([#67](https://github.com/sequeless/sequeless-build/issues/67)) ([986a6ec](https://github.com/sequeless/sequeless-build/commit/986a6ec0e6a1eb8b1826b69eb0a0e32570f73963))
+
 ## [0.3.0](https://github.com/sequeless/sequeless-build/compare/sequeless-bom-v0.2.0...sequeless-bom-v0.3.0) (2026-11-26)
 
 

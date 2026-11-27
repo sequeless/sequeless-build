@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/sequeless/sequeless-build/compare/sequeless-bom-v0.3.2...sequeless-bom-v0.4.0) (2026-11-27)
+
+
+### Features
+
+* **bom:** list the store artifacts at 0.1.0, and the G2 store contract check (spec 18, U10) ([#72](https://github.com/sequeless/sequeless-build/issues/72)) ([26973b7](https://github.com/sequeless/sequeless-build/commit/26973b75bce54f0abfb408e056cd3080bebe5dfd))
+
 ## [0.3.2](https://github.com/sequeless/sequeless-build/compare/sequeless-bom-v0.3.1...sequeless-bom-v0.3.2) (2026-11-26)
 
 

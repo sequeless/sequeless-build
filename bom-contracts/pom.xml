@@ -163,6 +163,26 @@
       <artifactId>schema-contract</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.sequeless</groupId>
+      <artifactId>store-core</artifactId>
+      <!-- Pinned to the released store version (0.1.0), as query-core is pinned above: the sequeless-bom import
+           does not list the store artifacts until the BOM release that adds them (spec 18, F1). -->
+      <version>0.1.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.sequeless</groupId>
+      <artifactId>store-testkit</artifactId>
+      <version>0.1.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.sequeless</groupId>
+      <artifactId>store-postgres-jsonb-adapter</artifactId>
+      <version>0.1.0</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <!-- No parent, so the GitHub Packages repository is repeated from sequeless-build-parent

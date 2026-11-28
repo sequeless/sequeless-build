@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/sequeless/sequeless-build/compare/sequeless-bom-v0.4.0...sequeless-bom-v0.5.0) (2026-11-28)
+
+
+### Features
+
+* **bom:** add ontology-postgres-adapter 0.1.0 to the BOM (Refs sequeless/sequeless-prototype[#46](https://github.com/sequeless/sequeless-build/issues/46)) ([49a6940](https://github.com/sequeless/sequeless-build/commit/49a6940d07bb6a7f87a4eab9bf1571793018d35a))
+
 ## [0.4.0](https://github.com/sequeless/sequeless-build/compare/sequeless-bom-v0.3.2...sequeless-bom-v0.4.0) (2026-11-27)
 
 

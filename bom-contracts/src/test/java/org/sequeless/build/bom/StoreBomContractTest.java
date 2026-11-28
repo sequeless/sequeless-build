@@ -27,9 +27,9 @@ import org.sequeless.store.spi.Violation;
  * port), and {@code PostgresJsonbSyncTest} (the O2 JSONB sync check, through the public ports). The store's in-memory
  * doubles and JSONB codecs are package-private, so the database is the only public seam (#71, option 2).
  *
- * <p><b>Recorded gap, not coverage.</b> {@code ValidationContract} is not run in BOM CI yet. It needs a BOM-local
- * {@code ValidationPort} and a {@code Schema} built from an ontology document. It is deferred to sequeless-build#77,
- * and #71 and the spec 18 section 11 checkbox stay open until that follow-up lands.
+ * <p>{@code ValidationContract} runs in {@code ValidationContractOnBomTest} (sequeless-build#77). It uses a BOM-local
+ * {@code ValidationPort} over the released ontology-jena-adapter SHACL port, and a {@code Schema} built from the reference
+ * ontology document.
  */
 class StoreBomContractTest {
 

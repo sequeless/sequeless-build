@@ -131,6 +131,9 @@
     <dependency>
       <groupId>org.sequeless</groupId>
       <artifactId>ontology-core</artifactId>
+      <!-- Pinned to the released ontology-core 0.2.0 (spec 18, F2). The sequeless-bom import manages 0.1.0 (G2),
+           and ontology-postgres-adapter 0.1.0 compile-depends on 0.2.0. -->
+      <version>0.2.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -161,6 +164,11 @@
     <dependency>
       <groupId>org.sequeless</groupId>
       <artifactId>schema-contract</artifactId>
+      <!-- Pinned to the released schema-contract 0.2.0 (spec 18, F2), next to the ontology-core 0.2.0 pin: ontology-core
+           0.2.0 compile-depends on it, and the sequeless-bom import manages 0.1.0. Without it,
+           OntologyBomContractTest fails with NoConsistentOntologyException missing. ontology-jena-adapter 0.1.2 passes
+           against 0.2.0 in this module. -->
+      <version>0.2.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>

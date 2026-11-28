@@ -21,11 +21,15 @@ import org.sequeless.store.spi.Violation;
  * ({@link OntologyDocumentStore}, {@link Schema}) must resolve against {@code ontology-core} as the BOM lists it.
  * If the versions diverge, this class fails to compile.
  *
- * <p><b>Recorded gap, not coverage.</b> This class does not run the store-testkit contracts
- * ({@code ObjectStoreContract}, {@code AggregateContract}, {@code ValidationContract},
- * {@code AuthorizationContract}), and it does not run the O2 JSONB-to-{@code Value} sync test. The store's in-memory
- * doubles are package-private, and the only public port implementations need a database. The O2 fallback is
- * recorded in sequeless-build#71. These contracts are added here once a public seam exists.
+ * <p>The store-testkit contracts run in their own classes (spec 18, #71), against a PostgreSQL 18 container:
+ * {@code PostgresObjectStoreContractTest} ({@code ObjectStoreContract}), {@code PostgresAggregateContractTest}
+ * ({@code AggregateContract}), {@code AuthorizationContractOnBomTest} ({@code AuthorizationContract}, with a BOM-local
+ * port), and {@code PostgresJsonbSyncTest} (the O2 JSONB sync check, through the public ports). The store's in-memory
+ * doubles and JSONB codecs are package-private, so the database is the only public seam (#71, option 2).
+ *
+ * <p><b>Recorded gap, not coverage.</b> {@code ValidationContract} is not run in BOM CI yet. It needs a BOM-local
+ * {@code ValidationPort} and a {@code Schema} built from an ontology document. It is deferred to sequeless-build#77,
+ * and #71 and the spec 18 section 11 checkbox stay open until that follow-up lands.
  */
 class StoreBomContractTest {
 

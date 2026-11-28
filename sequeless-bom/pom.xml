@@ -155,6 +155,14 @@
         <artifactId>ontology-testfixtures</artifactId>
         <version>0.1.0</version>
       </dependency>
+      <!-- Ontology Postgres adapter at its released 0.1.0 (spec 18, section 8, U13b). It compile-depends on
+           ontology-core 0.2.0; this BOM still manages ontology-core 0.1.0, so consumers that rely on the BOM
+           alone must pin ontology-core 0.2.0 themselves (spec 18, Q1 option B). -->
+      <dependency>
+        <groupId>org.sequeless</groupId>
+        <artifactId>ontology-postgres-adapter</artifactId>
+        <version>0.1.0</version>
+      </dependency>
       <!-- Store artifacts at their released versions (spec 18, section 8, U10). -->
       <dependency>
         <groupId>org.sequeless</groupId>
